@@ -1,5 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
+
+const router = useRouter();
 
 export default function App() {
   return (
@@ -12,7 +15,7 @@ export default function App() {
       />
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => console.log("Contact !")}
+        onPress={() => router.push("/about")}
       >
         <Text style={styles.btnText}>Me contacter</Text>
       </TouchableOpacity>
