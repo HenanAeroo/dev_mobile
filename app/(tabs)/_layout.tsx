@@ -14,6 +14,7 @@ export default function TabLayout() {
           height: 56,
           backgroundColor: "black",
           justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Text style={{ textAlign: "center" }}>
@@ -21,19 +22,52 @@ export default function TabLayout() {
         </Text>
       </View>
 
-      <View style={{ flexDirection: "row", flex: 1, justifyContent: "center" }}>
-        <View style={{ width: 60, backgroundColor: "grey" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          flex: 1,
+        }}
+      >
+        <View
+          style={{
+            width: 60,
+            backgroundColor: "grey",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Text>Sidebar gauche</Text>
         </View>
-        <View style={{ flex: 1, backgroundColor: "white" }}>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "white",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Text>Main content</Text>
         </View>
-        <View style={{ width: 60, backgroundColor: "grey" }}>
+        <View
+          style={{
+            width: 60,
+            backgroundColor: "grey",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Text>Sidebar droite</Text>
         </View>
       </View>
 
-      <View style={{ width: 48, backgroundColor: "black" }}>
+      <View
+        style={{
+          height: 48,
+          backgroundColor: "black",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Text style={{ color: "white" }}>Footer</Text>
       </View>
     </SafeAreaView>
