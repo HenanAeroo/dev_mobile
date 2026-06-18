@@ -1,21 +1,5 @@
-
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-export default function ProfileCard() {
-  return (
-    <View style={styles.screen}>
-      <View style={styles.card}>
-        <Image
-          source={{ uri: "https://www.hnoel.fr/assets/Photo_Henan_NOEL.webp" }}
-          style={styles.avatar}
-        />
-        <Text style={styles.name}>NOËL Hénan</Text>
-        <Text style={styles.title}>Software Engineer</Text>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Me contacter</Text>
-        </TouchableOpacity>
-)
- }       
 const CARDS = [
   { id: "c1", color: "#4B7BE5", title: "Carte 1" },
   { id: "c2", color: "#2EB67D", title: "Carte 2" },
@@ -93,6 +77,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "600",
     fontSize: 16,
+  },
   wrapper: {
     flex: 1,
     justifyContent: "center",
@@ -104,22 +89,6 @@ const styles = StyleSheet.create({
     height: 220,
     width: 340, // 280 card width + 2 * 30 offset
     position: "relative",
-  },
-  // Carte fixe 280x170
-  card: {
-    position: "absolute",
-    width: 280,
-    height: 170,
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    // Ombre iOS
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    // Ombre Android
-    elevation: 8,
   },
   cardTitle: {
     color: "#FFFFFF",

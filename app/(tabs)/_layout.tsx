@@ -1,13 +1,4 @@
 import { Tabs } from "expo-router";
-
-export default function TabLayout() {
-  return (
-    <Tabs screenOptions={{ headerShown: false }}>
-      <Tabs.Screen name="index" options={{ title: "Accueil" }} />
-      <Tabs.Screen name="about" options={{ title: "À propos" }} />
-    </Tabs>
-  );
-}
 import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileCard from "../../components/ProfileCard";
