@@ -5,30 +5,50 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function TabLayout() {
   const { width, height } = useWindowDimensions();
   const cardWidth = width * 0.9;
-  const numColumns = width > 600 ? 3 : 2;
+  const numColumns = width > 600 ? 4 : 25;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
         style={{
-          height: 60,
           backgroundColor: "#F54927",
           justifyContent: "center",
+          width: cardWidth,
+          height: numColumns,
         }}
       >
-      </View> 
-       <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 16, backgroundColor: '#F5F5F5'}}>
-        <View style={{ flex: 1, alignItems: 'center' }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>42</Text>
-          <Text style={{ color: '#999', fontSize: 12  }}>Publications</Text>
+        <Text style={{ textAlign: "center" }}>Test1</Text>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          paddingVertical: 16,
+          backgroundColor: "#F5F5F5",
+        }}
+      >
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <Text style={{ fontWeight: "bold", fontSize: 20 }}>42</Text>
+          <Text style={{ color: "#999", fontSize: 12 }}>Publications</Text>
         </View>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          paddingVertical: 16,
+          backgroundColor: "#F5F5F5",
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 20 }}>42</Text>
+          <Text style={{ color: "#999", fontSize: 12 }}>Abonnés</Text>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 16, backgroundColor: '#F5F5F5'}}>
-        <View style={{ flex: 1, alignItems: 'center' }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>42</Text>
-          <Text style={{ color: '#999', fontSize: 12  }}>Abonnés</Text>
-        </View>
-        <Text style={{ color: "white", textAlign: "center" }}>Test</Text>
       </View>
       <View
         style={{
@@ -36,11 +56,7 @@ export default function TabLayout() {
           justifyContent: "center",
         }}
       >
-        <Text
-          style={{ textAlign: "center", width: cardWidth, height: numColumns }}
-        >
-          Test2
-        </Text>
+        <Text style={{ textAlign: "center" }}>Test2</Text>
       </View>
       <View
         style={{
