@@ -35,9 +35,9 @@ export default function ContactsScreen() {
   const filtered = useMemo(
     () =>
       CONTACTS.filter((c) =>
-        c.name.toLowerCase().includes(search.toLowerCase())
+        c.name.toLowerCase().includes(search.toLowerCase()),
       ),
-    [search]
+    [search],
   );
 
   // 3.3 — regroupement par rôle (basé sur la liste filtrée)
@@ -47,7 +47,7 @@ export default function ContactsScreen() {
         title: role,
         data: filtered.filter((c) => c.role === role),
       })).filter((section) => section.data.length > 0),
-    [filtered]
+    [filtered],
   );
 
   return (
@@ -66,7 +66,9 @@ export default function ContactsScreen() {
           style={[styles.toggle, !grouped && styles.toggleActive]}
           onPress={() => setGrouped(false)}
         >
-          <Text style={[styles.toggleText, !grouped && styles.toggleTextActive]}>
+          <Text
+            style={[styles.toggleText, !grouped && styles.toggleTextActive]}
+          >
             Liste
           </Text>
         </TouchableOpacity>
@@ -82,6 +84,7 @@ export default function ContactsScreen() {
 
       {grouped ? (
         <SectionList
+          stickySectionHeadersEnabled={true}
           sections={sections}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <ContactRow item={item} />}
