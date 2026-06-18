@@ -22,11 +22,13 @@ export default function TabLayout() {
         style={{
           flex: 1,
           justifyContent: "center",
-          width: cardWidth,
-          height: numColumns,
         }}
       >
-        <Text style={{ textAlign: "center" }}>Test2</Text>
+        <Text
+          style={{ textAlign: "center", width: cardWidth, height: numColumns }}
+        >
+          Test2
+        </Text>
       </View>
       <View
         style={{
