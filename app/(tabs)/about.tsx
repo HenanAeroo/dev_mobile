@@ -1,17 +1,6 @@
 import { Text, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import GridLayout, { type GridItem } from "../../components/GridLayout";
-
-const skills: GridItem[] = [
-  { id: "1", label: "React Native" },
-  { id: "2", label: "TypeScript" },
-  { id: "3", label: "Expo" },
-  { id: "4", label: "Node.js" },
-  { id: "5", label: "Git" },
-  { id: "6", label: "UI / UX" },
-  { id: "7", label: "REST API" },
-  { id: "8", label: "SQL" },
-];
+import GridLayout from "../../components/GridLayout";
 
 export default function AboutScreen() {
   return (
@@ -23,7 +12,7 @@ export default function AboutScreen() {
         </Text>
 
         <Text style={styles.sectionTitle}>Compétences</Text>
-        <GridLayout items={skills} />
+        <GridLayout />
       </ScrollView>
     </SafeAreaView>
   );
