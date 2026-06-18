@@ -11,61 +11,30 @@ export default function TabLayout() {
     <SafeAreaView style={{ flex: 1 }}>
       <View
         style={{
-          backgroundColor: "#F54927",
+          height: 56,
+          backgroundColor: "black",
           justifyContent: "center",
-          width: cardWidth,
-          height: numColumns,
         }}
       >
-        <Text style={{ textAlign: "center" }}>Test1</Text>
+        <Text style={{ textAlign: "center" }}>
+          <Text style={{ color: "white" }}>Header</Text>
+        </Text>
       </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-around",
-          paddingVertical: 16,
-          backgroundColor: "#F5F5F5",
-        }}
-      >
-        <View style={{ flex: 1, alignItems: "center" }}>
-          <Text style={{ fontWeight: "bold", fontSize: 20 }}>42</Text>
-          <Text style={{ color: "#999", fontSize: 12 }}>Publications</Text>
+
+      <View style={{ flexDirection: "row", flex: 1, justifyContent: "center" }}>
+        <View style={{ width: 60, backgroundColor: "grey" }}>
+          <Text>Sidebar gauche</Text>
+        </View>
+        <View style={{ flex: 1, backgroundColor: "white" }}>
+          <Text>Main content</Text>
+        </View>
+        <View style={{ width: 60, backgroundColor: "grey" }}>
+          <Text>Sidebar droite</Text>
         </View>
       </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-around",
-          paddingVertical: 16,
-          backgroundColor: "#F5F5F5",
-        }}
-      >
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-          }}
-        >
-          <Text style={{ fontWeight: "bold", fontSize: 20 }}>42</Text>
-          <Text style={{ color: "#999", fontSize: 12 }}>Abonnés</Text>
-        </View>
-      </View>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        <Text style={{ textAlign: "center" }}>Test2</Text>
-      </View>
-      <View
-        style={{
-          height: 50,
-          backgroundColor: "grey",
-          justifyContent: "center",
-        }}
-      >
-        <Text style={{ textAlign: "center" }}>Test3</Text>
+
+      <View style={{ width: 48, backgroundColor: "black" }}>
+        <Text style={{ color: "white" }}>Footer</Text>
       </View>
     </SafeAreaView>
   );
