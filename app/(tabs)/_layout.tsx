@@ -12,6 +12,18 @@ export default function TabLayout() {
           justifyContent: "center",
         }}
       >
+      </View> 
+       <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 16, backgroundColor: '#F5F5F5'}}>
+        <View style={{ flex: 1, alignItems: 'center' }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>42</Text>
+          <Text style={{ color: '#999', fontSize: 12  }}>Publications</Text>
+        </View>
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingVertical: 16, backgroundColor: '#F5F5F5'}}>
+        <View style={{ flex: 1, alignItems: 'center' }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>42</Text>
+          <Text style={{ color: '#999', fontSize: 12  }}>Abonnés</Text>
+        </View>
         <Text style={{ color: "white", textAlign: "center" }}>Test</Text>
       </View>
       <View style={{ flex: 1, justifyContent: "center" }}>
