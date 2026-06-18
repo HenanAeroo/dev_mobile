@@ -10,6 +10,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 import { CONTACTS, ROLES, type Contact } from "../../data/contacts";
 
 // 3.1 FlatList · 3.2 recherche · 3.3 SectionList (bascule Liste / Sections).
@@ -98,7 +99,11 @@ export default function ContactsScreen() {
         <FlatList
           data={filtered}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ContactRow item={item} />}
+          renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => router.push(`/contact/${item.id}`)}>
+            <ContactRow item={item} />
+          </TouchableOpacity>
+        )}
           ItemSeparatorComponent={Separator}
         />
       )}
