@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function TabLayout() {
   const { width, height } = useWindowDimensions();
   const cardWidth = width * 0.9;
-  const numColumns = width > 600 ? 4 : 25;
+  const numColumns = width > 600 ? 50 : 25;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
