@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router";
 import { Text, useWindowDimensions, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import ProfileCard from "../../components/ProfileCard";
 
 export default function TabLayout() {
   const { width, height } = useWindowDimensions();
@@ -67,6 +68,7 @@ export default function TabLayout() {
       >
         <Text style={{ textAlign: "center" }}>Test3</Text>
       </View>
+      <ProfileCard />
     </SafeAreaView>
   );
 }
