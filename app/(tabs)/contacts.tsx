@@ -99,7 +99,11 @@ export default function ContactsScreen() {
         <FlatList
           data={filtered}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <TouchableOpacity onPress={() => router.push(`/contact/${item.id}`)}> <ContactRow item={item} /> </TouchableOpacity>}
+          renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => router.push(`/contact/${item.id}`)}>
+            <ContactRow item={item} />
+          </TouchableOpacity>
+        )}
           ItemSeparatorComponent={Separator}
         />
       )}
