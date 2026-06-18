@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Text, useWindowDimensions, View } from "react-native";
+import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TabLayout() {
@@ -10,16 +10,15 @@ export default function TabLayout() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
-        style={{
-          height: 56,
-          backgroundColor: "black",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+        style={
+          (styles.centerItems,
+          {
+            height: 56,
+            backgroundColor: "black",
+          })
+        }
       >
-        <Text style={{ textAlign: "center" }}>
-          <Text style={{ color: "white" }}>Header</Text>
-        </Text>
+        <Text style={{ color: "white" }}>Header</Text>
       </View>
 
       <View
@@ -29,47 +28,58 @@ export default function TabLayout() {
         }}
       >
         <View
-          style={{
-            width: 60,
-            backgroundColor: "grey",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          style={
+            (styles.centerItems,
+            {
+              width: 60,
+              backgroundColor: "grey",
+            })
+          }
         >
           <Text>Sidebar gauche</Text>
         </View>
         <View
-          style={{
-            flex: 1,
-            backgroundColor: "white",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          style={
+            (styles.centerItems,
+            {
+              flex: 1,
+              backgroundColor: "white",
+            })
+          }
         >
           <Text>Main content</Text>
         </View>
         <View
-          style={{
-            width: 60,
-            backgroundColor: "grey",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          style={
+            (styles.centerItems,
+            {
+              width: 60,
+              backgroundColor: "grey",
+            })
+          }
         >
           <Text>Sidebar droite</Text>
         </View>
       </View>
 
       <View
-        style={{
-          height: 48,
-          backgroundColor: "black",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+        style={
+          (styles.centerItems,
+          {
+            height: 48,
+            backgroundColor: "black",
+          })
+        }
       >
         <Text style={{ color: "white" }}>Footer</Text>
       </View>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  centerItems: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
