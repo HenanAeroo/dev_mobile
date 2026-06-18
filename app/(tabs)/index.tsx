@@ -1,12 +1,15 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, Image, TouchableOpacity,  } from "react-native";
 import { useRouter } from "expo-router";
+import { Platform } from 'react-native';
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar as RNStatusBar } from 'react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.name}>NOËL Hénan</Text>
       <Text style={styles.role}>Software Engineer</Text>
       <Image
@@ -17,7 +20,7 @@ export default function HomeScreen() {
         <Text style={styles.btnText}>Me contacter</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -28,6 +31,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 24,
+    paddingTop: Platform.select({ ios: 0, android: RNStatusBar.currentHeight }),
   },
   avatar: { width: 120, height: 120, borderRadius: 60, marginBottom: 16 },
   name: { fontSize: 24, fontWeight: "bold", color: "#1A1A1A", marginBottom: 4 },
