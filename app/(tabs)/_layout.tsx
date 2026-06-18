@@ -10,13 +10,13 @@ export default function TabLayout() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
-        style={
-          (styles.centerItems,
+        style={[
+          styles.centerItems,
           {
             height: 56,
             backgroundColor: "black",
-          })
-        }
+          },
+        ]}
       >
         <Text style={{ color: "white" }}>Header</Text>
       </View>
@@ -28,48 +28,36 @@ export default function TabLayout() {
         }}
       >
         <View
-          style={
-            (styles.centerItems,
+          style={[
+            styles.centerItems,
             {
               width: 60,
               backgroundColor: "grey",
-            })
-          }
+            },
+          ]}
         >
           <Text>Sidebar gauche</Text>
         </View>
         <View
-          style={
-            (styles.centerItems,
-            {
-              flex: 1,
-              backgroundColor: "white",
-            })
-          }
+          style={[styles.centerItems, { flex: 1, backgroundColor: "white" }]}
         >
           <Text>Main content</Text>
         </View>
         <View
-          style={
-            (styles.centerItems,
+          style={[
+            styles.centerItems,
             {
               width: 60,
               backgroundColor: "grey",
-            })
-          }
+            },
+          ]}
         >
           <Text>Sidebar droite</Text>
         </View>
       </View>
 
       <View
-        style={
-          (styles.centerItems,
-          {
-            height: 48,
-            backgroundColor: "black",
-          })
-        }
+        style={[styles.centerItems, { height: 48, backgroundColor: "black" }]}
       >
         <Text style={{ color: "white" }}>Footer</Text>
       </View>
