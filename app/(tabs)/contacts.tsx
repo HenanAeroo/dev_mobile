@@ -16,6 +16,7 @@ import { CONTACTS, ROLES, type Contact } from "../../data/contacts";
 import { router } from "expo-router";
 import { contactDetailRoute } from "../../types/navigation";
 import { GenericList } from "../../components/GenericList";
+import { useDebounce } from "../../hooks/useDebounce";
 
 // 3.1 FlatList · 3.2 recherche · 3.3 SectionList (bascule Liste / Sections).
 function ContactRow({ item }: { item: Contact }) {
@@ -38,13 +39,16 @@ export default function ContactsScreen() {
   const [search, setSearch] = useState("");
   const [grouped, setGrouped] = useState(false);
 
-  // 3.2 — filtrage temps réel mémoïsé
+  // 3.2 — la recherche attend 300 ms d'inactivité avant de filtrer
+  const debouncedSearch = useDebounce(search, 300);
+
+  // 3.2 — filtrage mémoïsé sur la valeur debouncée
   const filtered = useMemo(
     () =>
       CONTACTS.filter((c) =>
-        c.name.toLowerCase().includes(search.toLowerCase()),
+        c.name.toLowerCase().includes(debouncedSearch.toLowerCase()),
       ),
-    [search],
+    [debouncedSearch],
   );
 
   // 3.3 — regroupement par rôle (basé sur la liste filtrée)
