@@ -1,15 +1,25 @@
-import { ScrollView, View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import {
+  ScrollView,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import { Route } from "../../constants/enums";
 
 // Hub de navigation vers les écrans d'exercices (Parties 1 à 3).
-const LINKS = [
-  { href: "/layouts", label: "Partie 1 — Layout & barre de stats" },
-  { href: "/flexbox", label: "Partie 2 — Flexbox avancés" },
-  { href: "/contacts", label: "Partie 3 — Liste, recherche, sections" },
-  { href: "/playground", label: "Partie 3 — Composants interactifs" },
-  { href: "/about", label: "À propos" },
-] as const;
+export const LINKS = {
+  index: "/",
+  flexbox: "/flexbox",
+  contacts: "/contacts",
+  contactDetails: "/contact-details",
+  playground: "/playground",
+  about: "/about",
+} as const satisfies Record<string, string>;
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -24,17 +34,20 @@ export default function HomeScreen() {
         <Text style={styles.name}>NOËL Hénan</Text>
         <Text style={styles.role}>Software Engineer</Text>
 
+        {/* 1.5 — Navigation typée via l'enum Route (au lieu de chaînes en dur) */}
         <View style={styles.menu}>
-          {LINKS.map((link) => (
-            <TouchableOpacity
-              key={link.href}
-              style={styles.link}
-              activeOpacity={0.8}
-              onPress={() => router.push(link.href)}
-            >
-              <Text style={styles.linkText}>{link.label}</Text>
-            </TouchableOpacity>
-          ))}
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => router.push(Route.Contacts)}
+          >
+            <Text style={styles.linkText}>Contacts</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => router.push(Route.Playground)}
+          >
+            <Text style={styles.linkText}>Playground</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
