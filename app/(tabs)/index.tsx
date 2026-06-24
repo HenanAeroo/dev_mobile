@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import { Route } from "../../constants/enums";
 
 // Hub de navigation vers les écrans d'exercices (Parties 1 à 3).
 export const LINKS = {
@@ -32,6 +33,22 @@ export default function HomeScreen() {
         />
         <Text style={styles.name}>NOËL Hénan</Text>
         <Text style={styles.role}>Software Engineer</Text>
+
+        {/* 1.5 — Navigation typée via l'enum Route (au lieu de chaînes en dur) */}
+        <View style={styles.menu}>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => router.push(Route.Contacts)}
+          >
+            <Text style={styles.linkText}>Contacts</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => router.push(Route.Playground)}
+          >
+            <Text style={styles.linkText}>Playground</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
