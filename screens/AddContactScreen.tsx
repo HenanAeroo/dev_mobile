@@ -101,73 +101,27 @@ export default function AddContactScreen() {
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "600",
-    color: "#1F2937",
-    marginBottom: 8,
-    marginTop: 18,
+    color: "#1A1A1A",
+    marginBottom: 6,
+    marginTop: 16,
   },
-
   input: {
-    backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: "#D1D5DB",
-    borderRadius: 14,
-
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-
+    borderColor: "#DDD",
+    borderRadius: 8,
+    padding: 12,
     fontSize: 16,
-    color: "#111827",
-
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-
-    elevation: 2,
   },
-
-  inputError: {
-    borderColor: "#DC2626",
-    backgroundColor: "#FEF2F2",
-  },
-
-  error: {
-    color: "#DC2626",
-    fontSize: 13,
-    marginTop: 6,
-    marginLeft: 4,
-  },
-
+  inputError: { borderColor: "#E74C3C" },
+  error: { color: "#E74C3C", fontSize: 12, marginTop: 4 },
   submitBtn: {
-    marginTop: 32,
-
-    backgroundColor: "#2563EB",
-
-    paddingVertical: 16,
-
-    borderRadius: 14,
-
+    backgroundColor: "#E8871A",
+    padding: 14,
+    borderRadius: 8,
+    marginTop: 24,
     alignItems: "center",
-
-    shadowColor: "#2563EB",
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-
-    elevation: 4,
   },
-
-  submitText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "700",
-  },
+  submitText: { color: "#FFF", fontWeight: "600", fontSize: 16 },
 });
