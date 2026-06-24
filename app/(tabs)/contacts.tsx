@@ -1,3 +1,4 @@
+import React from "react";
 import { useMemo, useState } from "react";
 import {
   FlatList,
@@ -8,20 +9,25 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CONTACTS, ROLES, type Contact } from "../../data/contacts";
+import { router } from "expo-router";
+import { contactDetailRoute } from "../../types/navigation";
 
 // 3.1 FlatList · 3.2 recherche · 3.3 SectionList (bascule Liste / Sections).
 function ContactRow({ item }: { item: Contact }) {
   return (
-    <View style={styles.row}>
-      <Image source={{ uri: item.avatar }} style={styles.avatar} />
-      <View style={{ flex: 1 }}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.role}>{item.role}</Text>
+    <Pressable onPress={() => router.push(contactDetailRoute(item.id))}>
+      <View style={styles.row}>
+        <Image source={{ uri: item.avatar }} style={styles.avatar} />
+        <View style={{ flex: 1 }}>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.role}>{item.role}</Text>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
