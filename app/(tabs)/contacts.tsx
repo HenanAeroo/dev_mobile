@@ -1,7 +1,6 @@
 import React from "react";
 import { useMemo, useState } from "react";
 import {
-  FlatList,
   SectionList,
   View,
   Text,
@@ -13,8 +12,10 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CONTACTS, ROLES, type Contact } from "../../data/contacts";
+
 import { router } from "expo-router";
 import { contactDetailRoute } from "../../types/navigation";
+import { GenericList } from "../../components/GenericList";
 
 // 3.1 FlatList · 3.2 recherche · 3.3 SectionList (bascule Liste / Sections).
 function ContactRow({ item }: { item: Contact }) {
@@ -104,11 +105,11 @@ export default function ContactsScreen() {
           )}
         />
       ) : (
-        <FlatList
+        <GenericList
           data={filtered}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ContactRow item={item} />}
-          ItemSeparatorComponent={Separator}
+          renderItem={(item) => <ContactRow item={item} />}
+          emptyMessage="Aucun contact"
         />
       )}
     </SafeAreaView>
