@@ -1,3 +1,4 @@
+import React from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
 import ProfileCard from "../../components/ProfileCard";
 import GridLayout from "../../components/GridLayout";
