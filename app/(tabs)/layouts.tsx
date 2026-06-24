@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Platform, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Card } from "../../components/Cards";
 
 // 1.1 layout header/contenu/footer · 1.2 Platform.select · 1.3 barre de stats en row
 const STATS = [
@@ -29,6 +30,7 @@ export default function LayoutsScreen() {
       {/* Contenu central qui prend tout l'espace restant */}
       <View style={styles.body}>
         <Text>Zone de contenu principal</Text>
+        <Card title="Titre de la carte" subtitle="Sous-titre de la carte" onPress={() => {}}></Card>
       </View>
 
       {/* Footer 50pt, gris clair */}
