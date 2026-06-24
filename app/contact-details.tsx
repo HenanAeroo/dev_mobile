@@ -1,8 +1,8 @@
 import React from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { ContactDetailParams } from "../../types/navigation";
-import { CONTACTS } from "../../data/contacts";
+import { ContactDetailParams } from "../types/navigation";
+import { CONTACTS } from "../data/contacts";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ContactDetails() {
