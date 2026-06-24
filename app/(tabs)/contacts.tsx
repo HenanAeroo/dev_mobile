@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useMemo, useState } from "react";
 import {
   SectionList,
@@ -19,8 +19,14 @@ import { GenericList } from "../../components/GenericList";
 
 // 3.1 FlatList · 3.2 recherche · 3.3 SectionList (bascule Liste / Sections).
 function ContactRow({ item }: { item: Contact }) {
+  const handlePress = useCallback(() => {
+    router.push(contactDetailRoute(item.id));
+  }, [item.id]);
+
   return (
-    <Pressable onPress={() => router.push(contactDetailRoute(item.id))}>
+    <Pressable
+      onPress={(handlePress) => router.push(contactDetailRoute(item.id))}
+    >
       <View style={styles.row}>
         <Image source={{ uri: item.avatar }} style={styles.avatar} />
         <View style={{ flex: 1 }}>
@@ -55,6 +61,16 @@ export default function ContactsScreen() {
         data: filtered.filter((c) => c.role === role),
       })).filter((section) => section.data.length > 0),
     [filtered],
+  );
+
+  const renderContact = useCallback(
+    (item: Contact) => <ContactRow item={item} />,
+    [],
+  );
+
+  const renderSectionItem = useCallback(
+    ({ item }: { item: Contact }) => <ContactRow item={item} />,
+    [],
   );
 
   return (
@@ -94,7 +110,7 @@ export default function ContactsScreen() {
           stickySectionHeadersEnabled={true}
           sections={sections}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ContactRow item={item} />}
+          renderItem={renderSectionItem}
           ItemSeparatorComponent={Separator}
           renderSectionHeader={({ section }) => (
             <View style={styles.sectionHeader}>
@@ -108,7 +124,7 @@ export default function ContactsScreen() {
         <GenericList
           data={filtered}
           keyExtractor={(item) => item.id}
-          renderItem={(item) => <ContactRow item={item} />}
+          renderItem={renderContact}
           emptyMessage="Aucun contact"
         />
       )}
