@@ -1,6 +1,6 @@
+import React, { useCallback } from "react";
 import { useMemo, useState } from "react";
 import {
-  FlatList,
   SectionList,
   View,
   Text,
@@ -8,20 +8,38 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CONTACTS, ROLES, type Contact } from "../../data/contacts";
 
+import { router } from "expo-router";
+import { ROUTES } from "../../types/navigation";
+import { GenericList } from "../../components/GenericList";
+import { useDebounce } from "../../hooks/useDebounce";
+
+import AddContactScreen from "../../screens/AddContactScreen";
+
+import {
+  filterContacts,
+  groupByRole,
+  sortByName,
+} from "../../logic/contactsLogic";
+
 // 3.1 FlatList · 3.2 recherche · 3.3 SectionList (bascule Liste / Sections).
 function ContactRow({ item }: { item: Contact }) {
   return (
-    <View style={styles.row}>
-      <Image source={{ uri: item.avatar }} style={styles.avatar} />
-      <View style={{ flex: 1 }}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.role}>{item.role}</Text>
+    <Pressable
+      onPress={(handlePress) => router.push(ROUTES.contactDetails(item.id))}
+    >
+      <View style={styles.row}>
+        <Image source={{ uri: item.avatar }} style={styles.avatar} />
+        <View style={{ flex: 1 }}>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.role}>{item.role}</Text>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
@@ -31,23 +49,32 @@ export default function ContactsScreen() {
   const [search, setSearch] = useState("");
   const [grouped, setGrouped] = useState(false);
 
-  // 3.2 — filtrage temps réel mémoïsé
+  // 3.2 — la recherche attend 300 ms d'inactivité avant de filtrer
+  const debouncedSearch = useDebounce(search, 300);
+
+  // 3.2 — filtrage mémoïsé sur la valeur debouncée (logique métier isolée, 2.4)
   const filtered = useMemo(
-    () =>
-      CONTACTS.filter((c) =>
-        c.name.toLowerCase().includes(search.toLowerCase())
-      ),
-    [search]
+    () => sortByName(filterContacts(CONTACTS, debouncedSearch)),
+    [debouncedSearch],
   );
 
   // 3.3 — regroupement par rôle (basé sur la liste filtrée)
-  const sections = useMemo(
-    () =>
-      ROLES.map((role) => ({
-        title: role,
-        data: filtered.filter((c) => c.role === role),
-      })).filter((section) => section.data.length > 0),
-    [filtered]
+  const sections = useMemo(() => {
+    const groups = groupByRole(filtered);
+    return ROLES.map((role) => ({
+      title: role,
+      data: groups[role] ?? [],
+    })).filter((section) => section.data.length > 0);
+  }, [filtered]);
+
+  const renderContact = useCallback(
+    (item: Contact) => <ContactRow item={item} />,
+    [],
+  );
+
+  const renderSectionItem = useCallback(
+    ({ item }: { item: Contact }) => <ContactRow item={item} />,
+    [],
   );
 
   return (
@@ -66,7 +93,9 @@ export default function ContactsScreen() {
           style={[styles.toggle, !grouped && styles.toggleActive]}
           onPress={() => setGrouped(false)}
         >
-          <Text style={[styles.toggleText, !grouped && styles.toggleTextActive]}>
+          <Text
+            style={[styles.toggleText, !grouped && styles.toggleTextActive]}
+          >
             Liste
           </Text>
         </TouchableOpacity>
@@ -78,13 +107,22 @@ export default function ContactsScreen() {
             Sections
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.toggle, grouped && styles.toggleActive]}
+          onPress={() => router.push(ROUTES.contactAdd)}
+        >
+          <Text style={[styles.toggleText, grouped && styles.toggleTextActive]}>
+            Ajouter un contact
+          </Text>
+        </TouchableOpacity>
       </View>
 
       {grouped ? (
         <SectionList
+          stickySectionHeadersEnabled={true}
           sections={sections}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ContactRow item={item} />}
+          renderItem={renderSectionItem}
           ItemSeparatorComponent={Separator}
           renderSectionHeader={({ section }) => (
             <View style={styles.sectionHeader}>
@@ -95,11 +133,11 @@ export default function ContactsScreen() {
           )}
         />
       ) : (
-        <FlatList
+        <GenericList
           data={filtered}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ContactRow item={item} />}
-          ItemSeparatorComponent={Separator}
+          renderItem={renderContact}
+          emptyMessage="Aucun contact"
         />
       )}
     </SafeAreaView>
