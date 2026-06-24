@@ -1,6 +1,7 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { CONTACTS} from "../../data/contacts";
+import { ContactParamList } from '../../types/navigation';
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 24, alignItems: "center", gap: 12, backgroundColor: "#FFFFFF" },
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
 });
 
 export default function ContactDetailScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id } = useLocalSearchParams<ContactParamList>();
   const contact = CONTACTS.find(c => c.id === id);
   if (!contact) return <Text style={{ padding: 24 }}>Contact introuvable</Text>;
     return (
