@@ -1,5 +1,17 @@
 import { useLocalSearchParams } from "expo-router";
-import { LINKS } from "../app/(tabs)";
+
+export const ROUTES = {
+  home: "/",
+  contacts: "/contacts",
+  contactAdd: "/add-contact",
+  contactDetails: (id: string) => ({
+    pathname: "/contact-details",
+    params: { id },
+  }),
+  playground: "/playground",
+  about: "/about",
+  flexbox: "/flexbox",
+} as const;
 
 export type ContactDetailParams = {
   id: string;
@@ -15,13 +27,6 @@ export type RootStackParamList = {
   layout: undefined;
 };
 
-export function contactDetailRoute(id: string) {
-  return {
-    pathname: LINKS.contactDetails,
-    params: { id } satisfies ContactDetailParams,
-  } as const;
-}
-
 export default function ContactDetail() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id } = useLocalSearchParams<ContactDetailParams>();
 }

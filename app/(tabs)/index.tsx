@@ -10,16 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { Route } from "../../constants/enums";
-
-// Hub de navigation vers les écrans d'exercices (Parties 1 à 3).
-export const LINKS = {
-  index: "/",
-  flexbox: "/flexbox",
-  contacts: "/contacts",
-  contactDetails: "/contact-details",
-  playground: "/playground",
-  about: "/about",
-} as const satisfies Record<string, string>;
+import { ROUTES } from "../../types/navigation";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -38,13 +29,13 @@ export default function HomeScreen() {
         <View style={styles.menu}>
           <TouchableOpacity
             style={styles.link}
-            onPress={() => router.push(Route.Contacts)}
+            onPress={() => router.push(ROUTES.contacts)}
           >
             <Text style={styles.linkText}>Contacts</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.link}
-            onPress={() => router.push(Route.Playground)}
+            onPress={() => router.push(ROUTES.playground)}
           >
             <Text style={styles.linkText}>Playground</Text>
           </TouchableOpacity>

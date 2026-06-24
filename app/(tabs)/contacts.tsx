@@ -14,19 +14,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { CONTACTS, ROLES, type Contact } from "../../data/contacts";
 
 import { router } from "expo-router";
-import { contactDetailRoute } from "../../types/navigation";
+import { ROUTES } from "../../types/navigation";
 import { GenericList } from "../../components/GenericList";
 import { useDebounce } from "../../hooks/useDebounce";
+import AddContactScreen from "../../screens/AddContactScreen";
 
 // 3.1 FlatList · 3.2 recherche · 3.3 SectionList (bascule Liste / Sections).
 function ContactRow({ item }: { item: Contact }) {
-  const handlePress = useCallback(() => {
-    router.push(contactDetailRoute(item.id));
-  }, [item.id]);
-
   return (
     <Pressable
-      onPress={(handlePress) => router.push(contactDetailRoute(item.id))}
+      onPress={(handlePress) => router.push(ROUTES.contactDetails(item.id))}
     >
       <View style={styles.row}>
         <Image source={{ uri: item.avatar }} style={styles.avatar} />
@@ -105,6 +102,14 @@ export default function ContactsScreen() {
         >
           <Text style={[styles.toggleText, grouped && styles.toggleTextActive]}>
             Sections
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.toggle, grouped && styles.toggleActive]}
+          onPress={() => router.push(ROUTES.contactAdd)}
+        >
+          <Text style={[styles.toggleText, grouped && styles.toggleTextActive]}>
+            Ajouter un contact
           </Text>
         </TouchableOpacity>
       </View>
