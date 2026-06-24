@@ -17,7 +17,14 @@ import { router } from "expo-router";
 import { ROUTES } from "../../types/navigation";
 import { GenericList } from "../../components/GenericList";
 import { useDebounce } from "../../hooks/useDebounce";
+
 import AddContactScreen from "../../screens/AddContactScreen";
+
+import {
+  filterContacts,
+  groupByRole,
+  sortByName,
+} from "../../logic/contactsLogic";
 
 // 3.1 FlatList · 3.2 recherche · 3.3 SectionList (bascule Liste / Sections).
 function ContactRow({ item }: { item: Contact }) {
@@ -45,24 +52,20 @@ export default function ContactsScreen() {
   // 3.2 — la recherche attend 300 ms d'inactivité avant de filtrer
   const debouncedSearch = useDebounce(search, 300);
 
-  // 3.2 — filtrage mémoïsé sur la valeur debouncée
+  // 3.2 — filtrage mémoïsé sur la valeur debouncée (logique métier isolée, 2.4)
   const filtered = useMemo(
-    () =>
-      CONTACTS.filter((c) =>
-        c.name.toLowerCase().includes(debouncedSearch.toLowerCase()),
-      ),
+    () => sortByName(filterContacts(CONTACTS, debouncedSearch)),
     [debouncedSearch],
   );
 
   // 3.3 — regroupement par rôle (basé sur la liste filtrée)
-  const sections = useMemo(
-    () =>
-      ROLES.map((role) => ({
-        title: role,
-        data: filtered.filter((c) => c.role === role),
-      })).filter((section) => section.data.length > 0),
-    [filtered],
-  );
+  const sections = useMemo(() => {
+    const groups = groupByRole(filtered);
+    return ROLES.map((role) => ({
+      title: role,
+      data: groups[role] ?? [],
+    })).filter((section) => section.data.length > 0);
+  }, [filtered]);
 
   const renderContact = useCallback(
     (item: Contact) => <ContactRow item={item} />,
